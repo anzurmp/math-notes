@@ -1,0 +1,178 @@
+\documentclass[letterpaper, 11pt, openany]{book}
+\usepackage{amsthm}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{inter}
+\usepackage{authoraftertitle}
+\usepackage{fontawesome5}
+\usepackage{relsize}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{tocloft}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{multicol}
+\usepackage{cellspace}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{comment}
+
+\faStyle{regular}
+
+\vbadness=99999
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter \ ~ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection \ ~ #1}}
+\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\subsubsectionmark}[1]{}
+
+\fancyhf{}
+\setlength{\headheight}{18pt}
+\setlength{\headsep}{18pt}
+\setlength{\footskip}{32pt}
+
+\fancyhead[LE]{\sffamily \textbf{\thepage} \qquad Chapter \leftmark}
+\fancyhead[RO]{\sffamily Section \rightmark \qquad \textbf{\thepage}}
+
+%\fancyhead[LO, RE]{\sffamily \textbf{\rightmark}}
+%\fancyhead[RO, LE]{\sffamily \textbf{\thepage}}
+
+
+\fancypagestyle{firstofchapter}{
+    \fancyhead{}
+    \fancyfoot[RO,LE]{\sffamily \textbf{\thepage}} 
+}
+
+\renewcommand \labelenumi{\textbf{\theenumi.}}
+\renewcommand \labelenumii{\textbf{\theenumii.}}
+
+\renewcommand \labelitemii{$\circ$}
+
+\newcommand{\scdot}{\boldsymbol{\cdot}}
+\newcommand{\redboxed}[1]{{\color{red}\boxed{\color{black}{#1}}}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\qedsymbol}{\faSquare}
+\newcommand{\curl}[1]{\operatorname{curl}\mathbf{#1}}
+\newcommand{\divr}[1]{\operatorname{div}\mathbf{#1}}
+\newcommand{\proj}[2]{\operatorname{proj}_{\mathbf{#2}}\mathbf{#1}}
+\newcommand{\comp}[2]{\operatorname{comp}_{\mathbf{#2}}\mathbf{#1}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\titleclass{\part}{top}
+\titleclass{\chapter}{straight}
+
+\titleformat{\part}{\sffamily\huge\fontseries{b}\selectfont}{\thepart}{1em}{}
+\titlespacing{\part}{0pt}{18pt plus 0pt minus 18pt}{12pt plus 2pt minus 2pt}
+
+\titleformat{\chapter}{\sffamily\LARGE\fontseries{b}\selectfont}{\thechapter}{1em}{}
+\titlespacing{\chapter}{0pt}{18pt plus 0pt minus 18pt}{12pt plus 2pt minus 2pt}
+
+\titleformat{\section}{\sffamily\Large\fontseries{b}\selectfont}{\thesection}{1em}{}
+\titlespacing{\section}{0pt}{18pt plus 4pt minus 4pt}{12pt plus 2pt minus 2pt}
+
+\titleformat{\subsection}{\sffamily\large\fontseries{b}\selectfont}{\thesubsection}{1em}{}
+\titlespacing{\subsection}{0pt}{18pt plus 4pt minus 4pt}{12pt plus 2pt minus 2pt}
+
+\titleformat{\subsubsection}{\sffamily\fontseries{b}\selectfont}{\thesubsubsection}{1em}{}
+\titlespacing{\subsubsection}{0pt}{18pt plus 4pt minus 4pt}{2pt plus 2pt minus 2pt}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+
+\renewcommand{\arraystretch}{1.2}
+
+\newtheoremstyle{mytheoremstyle}
+    {3pt}{3pt}{\normalfont}{0pt}{\small \sffamily \fontseries{b}\selectfont}{.}{ }{}
+\theoremstyle{mytheoremstyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+
+\renewenvironment{proof}{{\par \sffamily \smaller \fontseries{b}\selectfont Proof}}{\hfill\qed}
+
+\newtheoremstyle{myexamplestyle}
+    {3pt}{3pt}{\normalfont}{0pt}{\small \sffamily \fontseries{b}\selectfont}{}{5mm}{}
+\theoremstyle{myexamplestyle}
+\newtheorem{example}{Example}[section]
+
+
+\newenvironment{solution}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Solution}}{\hfill\faSquare}
+\newenvironment{commentary}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Comment}}{}
+% TODO: change this to a theorem style so it can be referenced and numbered properly
+% \newenvironment{definition}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Definition}}{}
+
+\setcounter{tocdepth}{1}
+
+\setlength{\cftbeforepartskip}{12pt}
+\setlength{\cftbeforechapskip}{12pt}
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftchapnumwidth}{4ex}
+\setlength{\cftsecindent}{4ex}
+\setlength{\cftsecnumwidth}{7ex}
+
+\renewcommand{\cfttoctitlefont}{\sffamily\large\fontseries{b}\selectfont}
+\renewcommand{\cftpartfont}{\sffamily\large\fontseries{b}\selectfont}
+\renewcommand{\cftchapfont}{\sffamily\fontseries{b}\selectfont}
+\renewcommand{\cftchappagefont}{\sffamily\fontseries{b}\selectfont}
+\renewcommand{\cftpartpagefont}{\sffamily\fontseries{b}\selectfont}
+\renewcommand{\cftsecfont}{\sffamily\selectfont}
+\renewcommand{\cftsecpagefont}{\sffamily\selectfont}
+\renewcommand{\cftsubsecfont}{\sffamily\selectfont}
+\renewcommand{\cftsubsecpagefont}{\sffamily\selectfont}
+
+\renewcommand{\cftsecdotsep}{\cftnodots}
+\renewcommand{\cftsubsecdotsep}{\cftnodots}
+\renewcommand{\cftsubsubsecdotsep}{\cftnodots}
+
+%\setlist{leftmargin=*}
+\setlist[1]{labelindent=\parindent}
+
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+\newcommand\numberthisline{\addtocounter{equation}{1}\tag{\theequation}}
+
+\title{Anzur's Statistics Notes}
+
+\begin{document}
+
+\frontmatter
+
+\pagenumbering{gobble}
+
+\begin{center}
+    {\sffamily\huge\fontseries{b}\selectfont \MyTitle}
+\end{center}
+
+\pagestyle{empty}
+
+\makeatletter
+\@starttoc{toc}
+\makeatother
+
+\newpage
+
+\mainmatter
+
+\pagestyle{fancy}
+
+\pagenumbering{arabic}
+
+
+\thispagestyle{firstofchapter}
+\chapter{Introduction to Statistics}
+\section{Introduction and Definitions}
+\setcounter{figure}{0}
+
+Hello world!
+\end{document}
