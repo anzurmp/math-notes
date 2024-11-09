@@ -22,6 +22,9 @@
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{comment}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{theorems}
 
 \faStyle{regular}
 
@@ -96,7 +99,8 @@
     {3pt}{3pt}{\normalfont}{0pt}{\small \sffamily \fontseries{b}\selectfont}{.}{ }{}
 \theoremstyle{mytheoremstyle}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{definition}{Definition}[section]
+
+\newtcbtheorem[number within=section]{definition}{Definition}{fonttitle=\bfseries\sffamily}{def}
 
 \renewenvironment{proof}{{\par \sffamily \smaller \fontseries{b}\selectfont Proof}}{\hfill\qed}
 
@@ -108,8 +112,6 @@
 
 \newenvironment{solution}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Solution}}{\hfill\faSquare}
 \newenvironment{commentary}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Comment}}{}
-% TODO: change this to a theorem style so it can be referenced and numbered properly
-% \newenvironment{definition}{\paragraph{\sffamily \smaller \fontseries{b}\selectfont Definition}}{}
 
 \setcounter{tocdepth}{1}
 
@@ -174,7 +176,7 @@
 \section{Exponential and Logarithmic Functions}
 \setcounter{figure}{0}
 \subsection{Exponential Functions}
-\begin{definition}\label{d:exponential-function}
+\begin{definition}{}{exponential-function}
     An \textbf{exponential function} has the form $f(x) = b^{x}, b > 0, b \neq 1$.
 \end{definition}
 Exponential functions have the following properties:
@@ -199,7 +201,7 @@ Exponential functions have the following properties:
     \item Continuous! (We'll define this more formally later)
 \end{itemize}
 Most of our exponential functions will have a base $b > 1$. Some example graphs are shown in Figure \ref{f:expfunctions}. Most of the time we will use \textbf{Euler's Number}, $e$, as the base. For now we will define this number the following way:
-\begin{definition}\label{d:Eulers-number}
+\begin{definition}{}{Eulers-number}
     \(e = 2.71828\ldots\) is the unique base of an exponential function for which the slope of the tangent to the graph at \((0,1)\) is exactly 1.
 \end{definition}
 We'll see other definitions (including the original one by Bernoulli) later.
@@ -213,14 +215,14 @@ We'll see other definitions (including the original one by Bernoulli) later.
 \subsection{Logarithmic Functions}
 Recall that a \textbf{function} is a relation between one set (domain) to another (range) such that for each $x$ in the domain there is exactly one $y = f(x)$. Also recall that a function is \textbf{one-to-one} if for every $a, b$ in the domain of $f$, $f(a) = f(b) \Rightarrow a = b$. This is equivalent to saying $a \neq b \Rightarrow f(a) \neq f(b)$, in other words, different things go in to $f$, different things come out. One-to-one functions are the only ones with \textbf{inverses}; these reverse the relation.
 
-\begin{definition}\label{d:inverse-function}
+\begin{definition}{}{inverse-function}
     Let \(f\) be a one-to-one function. \textbf{Then the inverse of \(\bm{f}\)}, written \(f^{-1}\) \faFrown \ is defined as
     \[y = f^{-1}(x) \Leftrightarrow x = f(y)\]
 \end{definition}
 This basically switches the domain and range. The graph of $f^{-1}$ is the graph of $f$ mirrored about the line $y = x$.
 
 Note that exponential functions are one-to-one! So they can have inverses!
-\begin{definition}
+\begin{definition}{}{logarithm}
     The \textbf{logarithm of \(\bm{x}\) base \(\bm{b}\)}, is defined as 
     \[y = \log_{b} x \Leftrightarrow x = b^{y}\]
 \end{definition}
@@ -277,7 +279,7 @@ Inverse secant, cosecant, and cotangent functions are rarely ever used. We are n
     \item This shows the idea of a limit
 \end{itemize}
 
-\begin{definition}\label{d:limit}
+\begin{definition}{Limit}{limit}
     We say the \textbf{limit as $\bm{x}$ approaches $\bm{a}$ is $\bm{L}$}, written
     \[
         \lim_{x \to a} f(x) = L  
@@ -310,7 +312,7 @@ Inverse secant, cosecant, and cotangent functions are rarely ever used. We are n
     \item But can we say more?
     \item Vertical asymptotes are the most common way we will see limits not existing
 \end{itemize}
-\begin{definition}\label{d:infinite-limit}
+\begin{definition}{Infinite Limit}{infinite-limit}
     We say that \textbf{the limit as $\bm{x}$ approaches $\bm{a}$ is infinity}, written
     \[
         \lim_{x\to a} f(x) = \infty
@@ -432,7 +434,7 @@ Inverse secant, cosecant, and cotangent functions are rarely ever used. We are n
     \end{commentary}
 \end{example}
 Sometimes we need a limit with a function involving the absolute value function.
-\begin{definition}\label{d:abs-val}
+\begin{definition}{Absolute Value}{abs-val}
     The \textbf{absolute value} of \(x, |x| \), is the distance from \(x\) to 0 on the real number line. Equivalently,
     \[ |x| = 
     \begin{cases}
@@ -473,7 +475,7 @@ We can adjust this for other expressions.
     \item Calculus books always do this the hard way \faFrown
     \item We will do these the easy way \faSmile
 \end{itemize}
-\begin{definition}\label{d:limit-to-infty}
+\begin{definition}{Limit to Infinity}{limit-to-infty}
     We say the \textbf{limit as $\bm{x}$ approaches infinity of $\bm{f}$ is $\bm{L}$}, written
     \[
         \lim_{x \to \infty} f(x) = L    
@@ -520,7 +522,7 @@ Can adapt idea of dominant terms to other functions
 \section{Continuity}
 \setcounter{figure}{0}
 
-\begin{definition}\label{d:continuity}
+\begin{definition}{}{continuity}
     A function is \textbf{continuous at} \(\bm{a}\) if
     \[\lim_{x \to a} f(x) = f(a)\]
 \end{definition}
@@ -599,7 +601,7 @@ Now it is time for the first big problem in calculus: the Tangent Problem!
     \item We will let \(x\) stay a variable; note that this limit does not change \(x\) so the result (if it exists) will be a new function of \(x\)
     \item We call this new function \textbf{the derivative of \(\bm{f}\) with respect to \(\bm{x}\)}, \(f'(x)\).
 \end{itemize}
-\begin{definition}\label{d:derivative}
+\begin{definition}{}{derivative}
     \textbf{The derivative of \(\bm{f}\) with respect to \(\bm{x}\)} is
     \[f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}\]
 \end{definition}
@@ -1050,13 +1052,13 @@ Time to put derivatives to use! We do these here since we are still working with
 
 Here come the definitions!
 
-\begin{definition}\label{d:extrema}
+\begin{definition}{}{extrema}
     \(f(a)\) is an \textbf{absolute maximum value} of \(f\) if \(f(a) \geq f(x)\) for all \(x\) in the domain of \(f\). \(f(a)\) is an \textbf{absolute minimum value} of \(f\) if \(f(b) \leq f(x)\) for all \(x\) in the domain of \(f\). \(f\) has a \textbf{local maximum} at \(c\) if \(f(c) \geq f(x)\) for all \(x\) in a neighborhood of \(c\). \(f\) has a \textbf{local minimum} at \(d\) if \(f(d) \leq f(x)\) for all \(x\) in a neighborhood of \(d\). 
 \end{definition}
 
 So how do we find these? Absolute extrema can occur at local extrema. So where do local extrema occur?
 
-\begin{definition}\label{d:critical-point}
+\begin{definition}{}{critical-point}
     A number \(c\) in the domain of a function \(f\) is a \textbf{critical point} of \(f\) if either \(f'(c) = 0\) or \(f'(c)\) does not exist.
 \end{definition}
 
@@ -1335,7 +1337,7 @@ For tests, will break these down; do not have them do everything for one functio
 
 \section{Antiderivatives}
 
-\begin{definition}\label{d:antiderivative}
+\begin{definition}{}{antiderivative}
     We say that \(F\) is an \textbf{antiderivative} of \(f\) on an interval \(I\) if \(F'(x) = f(x)\) for all \(x\) in \(I\).
 \end{definition}
 \begin{itemize}
@@ -1451,7 +1453,7 @@ Now the main problem: find the area bounded by the graph of a continuous functio
 This is hard to do even with nice functions. Fortunately there may be a much easier way! \faSmile
 
 \section{The Definite Integral}
-\begin{definition}\label{d:definite-integral}
+\begin{definition}{}{definite-integral}
     The \textbf{definite integral} from \(a\) to \(b\) of \(f\) with respect to \(x\) is
     \[\int_a^b f(x) \, dx = \lim_{n\to\infty} \sum_{i=1}^{n} f(x_{i}^{*}) \Delta x\]
 \end{definition}
@@ -4100,7 +4102,7 @@ But we also have $2S = 2 + 4 + 6 + 8 + \cdots$; now we can take $2S + 2S = 1 + 2
 
 So while all of the series mentioned in the video are divergent, as it turns out there are actually relationships between these divergent series and these values!
 
-\begin{definition}\label{d:abel-sum}
+\begin{definition}{}{abel-sum}
     The \textbf{Abel Sum} of the sequence $\{a_{n}\}_{n=1}^{\infty}$ is $\displaystyle A = \lim_{x \to 1^{-}} \sum_{n=1}^{\infty} a_{n} x^{n-1}$, if the limit exists.
 \end{definition}
 
@@ -4132,7 +4134,7 @@ when $|x| < 1$. So then for $|x|<1$ we have $a(x) = \frac{d}{dx}\left( -1 + \fra
 \[ A =  \lim_{x \to 1^{-}} -\frac{1}{(1-x)^{2}} \]
 which does not exist. The series $S$ is not summable using any method that is \textit{linear} or \textit{stable}.
 
-\begin{definition}\label{d:summation-props}
+\begin{definition}{}{summation-props}
     Let \((a_{n}) = \{a_{1}, a_{2}, a_{3},\ldots\}\). A summation method \(\mathcal{S}(a_{n})\) is \textbf{regular} if it sums convergent series to their sums under ordinary summation. \(\mathcal{S}(a_{n})\) is \textbf{linear} if for sequences \((a_{n})\) and \((b_{n})\) and a scalar \(c\), \(\mathcal{S}((a_{n}) + c(b_{n})) = \mathcal{S}(a_{n}) + c\mathcal{S}(b_{n})\). \(\mathcal{S}\) is \textbf{stable} if the \textbf{shift rule} apples. That is, for any positive integer \(N\), \(\mathcal{S}(a_{n})\) converges if and only if \(\mathcal{S}(a_{n+N})\) converges.
 \end{definition}
 
@@ -4771,7 +4773,7 @@ so we can look at the function \(f(x) = \frac{x(x+1)}{2}\) and see what happens!
 
 \subsection{Vectors}
 
-\begin{definition}\label{d:vector-space}
+\begin{definition}{}{vector-space}
     A \textbf{vector space} consists of a set of \textbf{vectors} $V$ and two operations, addition and scalar multiplication, that have the following properties for any vectors $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$ and any scalars $c$ and $d$:
     \begin{enumerate}
         \item $\mathbf{a} + (\mathbf{b} + \mathbf{c}) = (\mathbf{a} + \mathbf{b}) + \mathbf{c}$
@@ -4793,7 +4795,7 @@ so we can look at the function \(f(x) = \frac{x(x+1)}{2}\) and see what happens!
 
 % Add figure to show scalar multiplication, addition
 
-\begin{definition}\label{d:position-vector}
+\begin{definition}{}{position-vector}
     A \textbf{position vector} has its initial point on the origin. If $\mathbf{a}$ is a position vector with terminal point $(a_{1}, a_{2}, a_{3})$ then the \textbf{component form} of $\mathbf{a}$ is $\langle a_{1}, a_{2}, a_{3} \rangle$. A \textbf{unit vector} is a vector with magnitude 1.
 \end{definition}
 
@@ -4804,7 +4806,7 @@ so we can look at the function \(f(x) = \frac{x(x+1)}{2}\) and see what happens!
     \item Can now write any vector $\mathbf{a} = \langle a_{1}, a_{2}, a_{3} \rangle$ as $\mathbf{a} = a_{1}\mathbf{i} + a_{2}\mathbf{j} + a_{3}\mathbf{k}$
 \end{itemize}
 
-\begin{definition}\label{d:unit-vector}
+\begin{definition}{}{unit-vector}
     A \textbf{unit vector} is a vector with magnitude 1.
 \end{definition}
 
@@ -4819,7 +4821,7 @@ so we can look at the function \(f(x) = \frac{x(x+1)}{2}\) and see what happens!
 \section{The Dot Product}
 \setcounter{figure}{0}
 
-\begin{definition}\label{d:dot-product}
+\begin{definition}{}{dot-product}
     Let $\mathbf{a} = \langle a_{1}, a_{2}, a_{3} \rangle$ and $\mathbf{b} = \langle b_{1}, b_{2}, b_{3} \rangle$. The \textbf{dot product} of $\mathbf{a}$ and $\mathbf{b}$ is $\mathbf{a} \scdot \mathbf{b} = a_{1}b_{1} + a_{2}b_{2} + a_{3}b_{3}$.
 \end{definition}
 
@@ -4863,7 +4865,7 @@ so we can look at the function \(f(x) = \frac{x(x+1)}{2}\) and see what happens!
 
 This leads to an alternate definition of the dot product: \(\mathbf{a} \scdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos \theta\).
 
-\begin{definition}\label{d:orthogonal-vectors}
+\begin{definition}{}{orthogonal-vectors}
     Two vectors $\mathbf{a}$ and $\mathbf{b}$ are \textbf{orthogonal} if $\mathbf{a} \scdot \mathbf{b} = 0$.
 \end{definition}
 
@@ -4882,7 +4884,7 @@ To find this we take the unit vector in the direction of \(\mathbf{a}\) and then
     \label{f:vec-proj}
 \end{figure}
 
-\begin{definition}\label{d:vector-projection}
+\begin{definition}{}{vector-projection}
     The \textbf{projection} of the vector \(\mathbf{b}\) onto the vector \(\mathbf{a}\) is defined as \(\proj{b}{a} = \dfrac{\mathbf{a} \scdot \mathbf{b}}{|\mathbf{a}|^{2}} \; \mathbf{a}\).
 \end{definition}
 
@@ -4914,7 +4916,7 @@ By co-factor expansion along first row:
 Can also use diagonal shortcut for 3 by 3 only
 
 \subsection{Cross Product}
-\begin{definition}\label{d:cross-product}
+\begin{definition}{}{cross-product}
     The cross product of the vectors \(\mathbf{a} = \langle a_1, a_2, a_3\rangle\) and \(\mathbf{b} = \langle b_1, b_2, b_3\rangle\) is
     \[\mathbf{a} \times \mathbf{b} = \det \begin{vmatrix}
         \mathbf{i} &\mathbf{j} &\mathbf{k}\\
@@ -4944,7 +4946,7 @@ Don't bother memorizing what this works out to \faMeh
 
 If \(\theta\) is the angle between the vectors \(\mathbf{a}\) and \(\mathbf{b}, 0 \leq \theta \leq \pi\), then \(|\mathbf{a} \times \mathbf{b}| = |\mathbf{a}||\mathbf{b}|\sin \theta\).
 
-\begin{definition}\label{d:scalar-triple-product}
+\begin{definition}{}{scalar-triple-product}
     The \textbf{scalar triple product} of the vectors \(\mathbf{a}, \mathbf{b}\), and \(\mathbf{c}\) (with usual components) is
     \[\mathbf{a} \scdot (\mathbf{b} \times \mathbf{c}) = \begin{vmatrix}
         a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3
@@ -4960,7 +4962,7 @@ If \(\theta\) is the angle between \(\mathbf{c}\) and \(\mathbf{b} \times \mathb
 \end{figure}
 
 \subsection{How to Derive the Cross Product}
-One good question: how on earth was this motivated? We can show by direct calculation that \(\mathbf{a}\scdot (\mathbf{a} \times \mathbf{b}) = \mathbf{b} \scdot (\mathbf{a} \times \mathbf{b}) = \mathbf{0}\) so that we know that \(\mathbf{a} \times \mathbf{b}\) is orthogonal to both \(\mathbf{a}\) and \(\mathbf{b}\), but how did anyone come up with the formula in Definition \ref{d:cross-product}?
+One good question: how on earth was this motivated? We can show by direct calculation that \(\mathbf{a}\scdot (\mathbf{a} \times \mathbf{b}) = \mathbf{b} \scdot (\mathbf{a} \times \mathbf{b}) = \mathbf{0}\) so that we know that \(\mathbf{a} \times \mathbf{b}\) is orthogonal to both \(\mathbf{a}\) and \(\mathbf{b}\), but how did anyone come up with the formula in Definition \ref{def:cross-product}?
 
 We can start with the standard unit vectors \(\mathbf{i}, \mathbf{j}\), and \(\mathbf{k}\), then \textit{define} the cross product be the operator with the following properties:
 \begin{align*}
@@ -5188,7 +5190,7 @@ We get something similar for the flux form!
 \chapter{Introduction to Differential Equations}
 \section{Introduction and Definitions}
 \setcounter{figure}{0}
-\begin{definition}\label{d:ODE-PDE}
+\begin{definition}{}{ODE-PDE}
     An \textbf{ordinary differential equation} (ODE) relates an unknown single-variable function \(y\) with its derivatives and its derivatives. The \textbf{order} of the equation is the order of the highest derivative that appears. A \textbf{partial differential equation} (PDE) relates partial derivatives of multivariable functions.
 \end{definition}
 
@@ -5200,7 +5202,7 @@ We get something similar for the flux form!
     \end{enumerate}
 \end{example}
 
-\begin{definition}\label{d:ivp}
+\begin{definition}{}{ivp}
     A first-order \textbf{initial value problem} (IVP) is an equation of the form \(y' = f(t,y), y(t_0) = y_0\). The \textbf{interval of existence} is the largest interval over which a solution remains a solution.
 \end{definition}
 
@@ -5256,7 +5258,7 @@ Equations of the form \(y' = f(y)\) that depend only on the dependent variable a
 
 \section{Separable Equations}
 \setcounter{figure}{0}
-\begin{definition}\label{d:separable-eqn}
+\begin{definition}{}{separable-eqn}
     An ODE is \textbf{separable} if we can write it as \(f(y)\frac{dy}{dx} = g(x) \Rightarrow f(y)dy = g(x)dx\).
 \end{definition}
 
@@ -5479,7 +5481,7 @@ but now we have \(y - y_{p} = (C-C_{p})y_{h}\); but this is also a solution to t
 \setcounter{figure}{0}
 We may want to look at level curves of the form \(F(x,y) = C\). From the Multivariable Chain Rule (Theorem \ref{t:multivar-chain-rule}) we get that \(\frac{dy}{dx} = - \frac{F_{x}}{F_{y}} \Rightarrow F_{x} dx + F_{y} dy = 0\). So given an equation in the form \(P(x,y) dx + Q(x,y)dy = 0\), we want to find the implicit solution in the form \(F(x,y) = C\) that satisfies the equation; so we want to solve \(\frac{dy}{dx} = \frac{-P(x,y)}{Q(x,y)}\).
 
-\begin{definition}\label{d:exact-eqn}
+\begin{definition}{}{exact-eqn}
     An equation in differential form \(P(x,y) dx + Q(x,y)dy = 0\) is \textbf{exact} if there exists a function \(F(x,y)\) such that \(F_{x} = P\) and \(F_{y} = Q\).
 \end{definition}
 
@@ -5532,7 +5534,7 @@ Sometimes an equation won't have the form we want but we can use various techniq
 
 \subsection{Homogeneous Equations}
 This is actually a different kind than what we dealt with earlier even though it's the same term.
-\begin{definition}\label{d:de-homogeneuous-deg-n}
+\begin{definition}{}{homogeneuous-deg-n}
     A function \(F(x,y)\) \textbf{is homogeneous of degree \(n\)} if \(F(tx, ty) = t^{n} F(x,y)\) for all \(t>0, x,y \neq 0\). An equation of the form \(P dx + Q dy = 0\) is \textbf{is homogeneous of degree \(n\)} if both \(P\) and \(Q\) are homogeneous of degree \(n\).
 \end{definition}
 
@@ -5614,8 +5616,7 @@ With these we can make the substitution \(z = ax + by\) and create a separable e
 
 \subsection{Bernoulli Equations}
 
-\begin{definition}\label{d:Bernoulli-eqn}
-    An equation of the form
+\begin{definition}{}{Bernoulli-eqn}
     \[y' + p(x)y = q(x)y^{n}\]
     is a \textbf{Bernoulli equation}.
 \end{definition}    
@@ -5663,13 +5664,13 @@ where \(p\) and \(q\) are constants. Note that \(y = 0\) is a solution, but we w
     since both \(y_{1}\) and \(y_{2}\) are solutions to (\eqref{eq:2nd-lin-hmgns-const-coeff}), \(y''_{1} + p y'_{1} + qy_{1} = y''_{2} + p y'_{2} + qy_{2} = 0\).
 \end{proof}
 
-\begin{definition}\label{d:de-linear-dependent}
+\begin{definition}{}{de-linear-dependent}
     Solutions \(y_{1}\) and \(y_{2}\) to \(y'' + py' + qy = 0\) are \textbf{linearly dependent} if there exists constants \(C_{1}, C_{2} \neq 0\) such that \(C_{1} y_{1} + C_{2} y_{2} = 0\). If so such constants exist, then \(y_{1}\) and \(y_{2}\) are \textbf{linearly independent}.
 \end{definition}
 
 In this case with two solutions,  \(C_{1} y_{1} + C_{2} y_{2} = 0 \Rightarrow y_{2} = -\frac{C_{1}}{C_{2}} y_{1}\) so \(y_{1}\) and \(y_{2}\) are constant multiples of each other. Later when we look at higher order equations, though, we will need some more robust way to determine linear independence.
 
-\begin{definition}\label{d:Wronskian}
+\begin{definition}{}{Wronskian}
     The \textbf{Wronskian} of the functions \(y_{1}\) and \(y_2\) is
     \[
         W(y_{1}, y_{2}) = \begin{vmatrix}
@@ -6125,7 +6126,7 @@ and as long as we can integrate each we are good to go to compute \(y_p = v_1 y_
 \setcounter{figure}{0}
 The idea here is to transform a differential equation into an algebraic equation that is easier to solve. For many equations this is going to be more work than previous methods, but it will work for some equations that we couldn't solve before too.
 \subsection{Definition of the Laplace Transforms}
-\begin{definition}\label{d:Laplace-xform}
+\begin{definition}{}{Laplace-xform}
     The \textbf{Laplace Transform} of \(f(t)\) is
     \[\mathcal{L}\{f(t)\}(s) = \int_0^{\infty} f(t) e^{-st} \, dt\]
     The domain is the set of \(s\) for which the integral converges. For simplicity, the convention is \(\mathcal{L}\{f(t)\}(s) = F(s)\). 
@@ -6331,7 +6332,7 @@ We can also use Laplace transforms on higher-order initial value problems. We're
 \setcounter{figure}{0}
 In many applications we want to make a sudden change in the input of a system. This is where we will have a piecewise and likely discontinuous function involved. To set these up in a way where we can use a Laplace transform, we will define the following:
 
-\begin{definition}\label{d:heaviside-function}
+\begin{definition}{}{heaviside-function}
     The \textbf{Heaviside} (or \textbf{Unit Step}) function is defined as
     \[H(t) = \begin{cases}
         0 \; &\text{ if } t<0\\
@@ -6510,7 +6511,7 @@ The main feature about this function is that the total area bound by the graph a
 \[\delta_{c}(t) = \lim_{\epsilon \to 0} \delta_{c}^{\epsilon}(t)\]
 This really isn't a function in the sense of a mapping from one set to another. We don't really plug stuff into this and get things out. Be suspicious of anyone who says you can \faFlushed \ Instead, we're going to use this to model a sharp force applied to an object for just an instant.
 
-\begin{definition}\label{def:unit-impulse}
+\begin{definition}{}{unit-impulse}
     If \(F(t)\) is the force applied to an object at time \(t, a \leq t \leq b\), then the \textbf{impulse} is \(\displaystyle \int_a^b F(t) \, dt\). If this integral equals one, then we call it a \textbf{unit impulse function}.
 \end{definition}
 
@@ -6564,7 +6565,7 @@ where \(p(s)\) is the characteristic polynomial of the equation! \faSmile \ This
 \end{example}
 \section{Convolutions}
 \setcounter{figure}{0}
-\begin{definition}\label{d:convolution}
+\begin{definition}{}{convolution}
     The \textbf{convolution} of \(f\) and \(g\), \(f*g\), is defined as
     \[(f*g)(t) = \int_{-\infty}^{\infty} f(u)g(t-u)\, du\]
     assuming the integral converges.
@@ -6624,7 +6625,7 @@ For now we will look at \textbf{homogeneous} systems where \(f_{i}(t) = 0\) for 
     \lambda \mathbf{v} &= A \mathbf{v} \numberthisline \label{eq:eigenvalue-vector}
 \end{align*}
 This leads to a key definition from linear algebra.
-\begin{definition}\label{d:eigenvalue-vector}
+\begin{definition}{}{eigenvalue-vector}
     If for some \(\mathbf{v} \neq \mathbf{0}, \lambda \mathbf{v} = A \mathbf{v}\), then we say \(\lambda\) is an \textbf{eigenvalue} of \(A\), and \(\mathbf{v}\) is a corresponding \textbf{eigenvector}.
 \end{definition}
 
@@ -6881,7 +6882,7 @@ One important thing to note with planar systems is that usually after computing 
 \subsection{Repeated Real Eigenvalues}
 So far we have had distinct eigenvalues and could always get a fundamental set of solutions from them. But with a repeated eigenvalue, we have something else to consider in that we have have fewer free variables than we need to get linearly independent solutions. Note that in either case this means that the characteristic equation is \(\left(\lambda - \frac{T}{2}\right)^{2} = 0\). We define the following:
 
-\begin{definition}\label{d:algebraic-geometric-multiplicity}
+\begin{definition}{}{algebraic-geometric-multiplicity}
     If \(\lambda_{i}\) is an eigenvalue of a matrix \(A\), then the \textbf{algebraic multiplicity \(\bm{m}\)} of \(\lambda_{i}\) is the number of times \((\lambda - \lambda_{i})\) is a factor in the characteristic polynomial. The \textbf{geometric multiplicity} is the number of free variables in the equation \((A - \lambda_{i})\mathbf{v} = \mathbf{0}\).
 \end{definition}
 
@@ -7008,7 +7009,7 @@ Remember Calc 2 and series? We have
 \[e^{x} = \sum_{n=0}^{\infty} \frac{x^{n}}{n!} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \cdots, \quad x \in \mathbb{C}\]
 but note that these operations in the series are things we can do to square matrices as well! So why not define\dots
 
-\begin{definition}\label{d:matrix-exp}
+\begin{definition}{}{matrix-exp}
     If \(A\) is a square matrix, then the \textbf{exponential of the matrix \(\bm{A}\)} Is
     \[e^{A} = \sum_{n=0}^{\infty} \frac{A^{n}}{n!} = I + A + \frac{A^{2}}{2!} + \frac{A^{3}}{3!} + \cdots\]
     with the convention that \(A^{0} = I\).
@@ -7100,7 +7101,7 @@ The first noticeable thing here is that if \(\mathbf{v}\) is an eigenvector of \
 
 But as we already saw we sometimes do not have enough linearly independent eigenvectors to get all of the solutions we need to make a fundamental set of solutions. Fortunately, it may be the case that \((A - \lambda I)^{n}\mathbf{v} = \bm{0}\) for other vectors \(\mathbf{v}\).
 
-\begin{definition}\label{d:generalized-evect}
+\begin{definition}{}{generalized-evect}
     A vector \(\mathbf{v}\) such that \((A - \lambda I)^{n}\mathbf{v} = \bm{0}\) but \((A - \lambda I)^{n-1}\mathbf{v} \neq \bm{0}\) for an eigenvalue \(\lambda\) of \(A\) and for some \(n \in \mathbb{N}\) is a \textbf{generalized eigenvector of \(\bm{A}\) of rank \(\bm{n}\)}.
 \end{definition}
 
@@ -7401,7 +7402,7 @@ This works the same as it did for single equations but we need to each component
 \subsection{Variation of Parameters}
 This will have the same idea; take the form of the homogeneous solution and vary the parameter to get a new solution. First, a little bit of setup.
 
-\begin{definition}\label{d:fundamental-matrix}
+\begin{definition}{}{fundamental-matrix}
     If \(\mathbf{y}_{1}, \mathbf{y}_{2}, \dots , \mathbf{y}_{n}\) are all linearly independent solutions to the system \(\mathbf{y}' = A \mathbf{y}\), then the matrix \(Y = \begin{bmatrix}\mathbf{y}_{1} & \mathbf{y}_{2} & \cdots & \mathbf{y}_{n} \end{bmatrix}\) is a \textbf{fundamental matrix}.
 \end{definition}
 Note that since \(\mathbf{y}_{1}, \mathbf{y}_{2}, \dots , \mathbf{y}_{n}\) are linearly independent, \(Y\) is invertible. This implies that \(Y\) is a fundamental matrix if and only if \(Y' = AY\) and \(Y_{0} = Y(t_{0})\) is invertible for some \(t_{0}\). Also note that \(e^{tA}\) is a fundamental matrix.
